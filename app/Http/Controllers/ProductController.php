@@ -25,32 +25,40 @@ class ProductController extends Controller
         // dd($request->input());
         $valid = $request->validate([
             'name' => ['required', 'string'],
-            'image' =>['nullable'],
+            'image' => ['nullable'],
             'qty' => ['integer', 'required', 'gte:0'],
             'price' => ['integer', 'required', 'gte:0'],
             'description' => ['required', 'string']
         ]);
 
         Product::create($valid);
-            return redirect()->route('products.index');
+        return redirect()->route('products.index');
     }
 
 
 
     public function edit(Product $product)
     {
-        //
+        return View('products.edit', compact('product'));
     }
-
 
     public function update(Request $request, Product $product)
     {
-        //
-    }
+        $valid = $request->validate([
+            'name' => ['required', 'string'],
+            'image' => ['nullable'],
+            'qty' => ['integer', 'required', 'gte:0'],
+            'price' => ['integer', 'required', 'gte:0'],
+            'description' => ['required', 'string'],
+        ]);
 
+        $product->update($valid);
+        return redirect()->route('products.index');
+    }
 
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return redirect()->route('products.index');
     }
 }
