@@ -7,7 +7,7 @@
             <div class="col-md-12">
                 <div class="card border-0 shadow">
                     <div class="card-body">
-                        <h1 class="text-center">Create Category</h1>
+                        <h1 class="text-center">Create Sub Category</h1>
                     </div>
                 </div>
             </div>
@@ -30,8 +30,18 @@
                             </div>
                         @endif
 
-                        <form action="{{ route('categories.store') }}" method="POST">
+                        <form action="{{ route('sub-categories.store') }}" method="POST">
                             @csrf
+                            <div>
+                                <label for="category_id">Category</label>
+                                <select class="form-select form-control mb-3" name="category_id" id="category_id">
+                                    <option selected>Select Category...</option>
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+
+                                </select>
+                            </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Name</label>
                                 <input type="text" name="name" class="form-control" id="exampleInputEmail1"

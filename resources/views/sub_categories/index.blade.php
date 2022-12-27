@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <div class="card border-0 shadow">
                     <div class="card-body">
-                        <h1 class="text-center">Category List</h1>
+                        <h1 class="text-center">Sub Category List</h1>
                     </div>
                 </div>
             </div>
@@ -24,25 +24,27 @@
                                     <th scope="col">SI</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Slug</th>
+                                    <th scope="col">Category Name</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
 
-                                @foreach ($categories as $category)
+                                @foreach ($sub_categories as $sub_category)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $category->name }}</td>
-                                        <td>{{ $category->slug }}</td>
+                                        <td>{{ $sub_category->name }}</td>
+                                        <td>{{ $sub_category->slug }}</td>
+                                        <td>{{ $sub_category->category->name}}</td>
 
                                         <td class="d-flex">
                                             <div class="flex-column me-1">
-                                                <a href="{{ route('categories.edit', $category) }}"
+                                                <a href="{{ route('sub-categories.edit', $sub_category) }}"
                                                     class="btn btn-primary btn-sm">
                                                     <i class="fa fa-pencil"></i>
                                                 </a>
                                             </div>
-                                            <form action="{{ route('categories.destroy', $category) }}" method="post"
+                                            <form action="{{ route('sub-categories.destroy', $sub_category) }}" method="post"
                                                 class="flex-column">
                                                 @method('DELETE')
                                                 @csrf
@@ -59,7 +61,7 @@
                             </tbody>
                         </table>
 
-                        <a href="{{ route('categories.create') }}" class="btn btn-primary">Create</a>
+                        <a href="{{ route('sub-categories.create') }}" class="btn btn-primary">Create</a>
                     </div>
                 </div>
             </div>
